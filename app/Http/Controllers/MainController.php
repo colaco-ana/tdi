@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Body;
 use App\Exercise;
 use App\Recipe;
-use App\Body;
 use App\Type;
-use App\Difficulty;
-use App\Generation;
-use App\User;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -22,18 +19,8 @@ class MainController extends Controller
     public function list_exercise()
     {
         $exercises = Exercise::all();
-        $body = Body::all();
-        $type = Type::all();
-        $difficulty = Difficulty::all();
-        $generation = Generation::all();
-        $user = User::all();
         return view('exercises')
-            ->with('exercises', $exercises)
-            ->with('body', $body)
-            ->with('type', $type)
-            ->with('difficulty', $difficulty)
-            ->with('generation', $generation)
-            ->with('user', $user);
+            ->with('exercises', $exercises);
 
     }
 
@@ -44,4 +31,21 @@ class MainController extends Controller
             ->with('recipes', $recipes);
 
     }
+
+    public function list_type()
+    {
+        $types = Type::all();
+        return view('types')
+            ->with('types', $types);
+
+    }
+
+    public function list_body()
+    {
+        $bodies = Body::all();
+        return view('bodies')
+            ->with('bodies', $bodies);
+
+    }
+
 }

@@ -17,8 +17,8 @@ class Exercise extends Model
         return $this->belongsTo('App\Body', 'body_part_id');
     }
 
-    public function exercise(){
-        return $this->belongsTo('App\Exercise', 'exercise_type_id');
+    public function type(){
+        return $this->belongsTo('App\Type', 'exercise_type_id');
     }
 
     public function recipe(){
