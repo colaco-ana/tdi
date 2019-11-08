@@ -140,6 +140,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+
         $user->delete();
 
         return back()->withErrors(['success' => 'User blocked.']);

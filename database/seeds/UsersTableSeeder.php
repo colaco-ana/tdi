@@ -21,10 +21,17 @@ class UsersTableSeeder extends Seeder
         ]);
 
         \App\User::create([
-            'name' => 'Manager',
-            'email' => 'manager@tdi.pt',
-            'password' => Hash::make('manager123'),
+            'name' => 'User',
+            'email' => 'user@tdi.pt',
+            'password' => Hash::make('user123'),
             'role_id' => 2,
+        ]);
+
+        \App\User::create([
+            'name' => 'PT',
+            'email' => 'pt@tdi.pt',
+            'password' => Hash::make('pt123'),
+            'role_id' => 3,
         ]);
 
         factory('App\User', 20)->create();

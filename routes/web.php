@@ -15,7 +15,8 @@
  * Unauthenticated Routes
  */
 Route::get('/', 'MainController@index')->name('index');
-
+Route::get('/list_exercise', 'MainController@list_exercise')->name('list_exercise');
+Route::get('/list_recipe', 'MainController@list')->name('list_recipe');
 /**
  *  Auth & Registration
  */
@@ -25,6 +26,7 @@ Auth::routes();
  * Authenticated only Routes
  */
 Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/list', 'RecipeController@list')->name('list');
 
 /**
  * Backoffice Routes
