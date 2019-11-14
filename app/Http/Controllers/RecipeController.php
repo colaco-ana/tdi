@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\RecipeStoreRequest;
 
 class RecipeController extends Controller
 {
@@ -42,11 +44,18 @@ class RecipeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome da receita.
+     * @bodyParam image required image Imagem da receita.
+     * @bodyParam preparation_mode required string max:5000 Modo de preparação da receita.
+     * @bodyParam ingredients required string max:5000 Ingredientes da receita.
+     * @bodyParam portion required integer Número de porções da receita.
+     * @bodyParam duration required integer Duração da receita.
+     * @bodyParam difficulty_id required integer Nível dedificuldade da receita.
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(RecipeStoreRequest $request)
     {
         $data = $request->all();
 
@@ -68,7 +77,13 @@ class RecipeController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @bodyParam name required string max:100 Nome da receita.
+     * @bodyParam image required image Imagem da receita.
+     * @bodyParam preparation_mode required string max:5000 Modo de preparação da receita.
+     * @bodyParam ingredients required string max:5000 Ingredientes da receita.
+     * @bodyParam portion required integer Número de porções da receita.
+     * @bodyParam duration required integer Duração da receita.
+     * @bodyParam difficulty_id required integer Nível dedificuldade da receita.
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
@@ -90,14 +105,45 @@ class RecipeController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome da receita.
+     * @bodyParam image required image Imagem da receita.
+     * @bodyParam preparation_mode required string max:5000 Modo de preparação da receita.
+     * @bodyParam ingredients required string max:5000 Ingredientes da receita.
+     * @bodyParam portion required integer Número de porções da receita.
+     * @bodyParam duration required integer Duração da receita.
+     * @bodyParam difficulty_id required integer Nível dedificuldade da receita.
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(RecipeStoreRequest $request, Recipe $recipe)
     {
         $data = $request->all();
+
+        /*$validator = Validator::make($data, [
+            'name' => 'bail|string|max:100',
+            'image' => 'bail|image',
+            'preparation_mode' => 'bail|string|max:5000',
+            'ingredients' => 'bail|string|max: 5000',
+            'portion' => 'bail|integer',
+            'duration' => 'bail|integer',
+            'difficulty_id' => 'bail|exists:difficulties,id|integer',
+        ], [
+            'name.string' => 'O nome deve ser do tipo texto',
+            'name.max' => 'O nome deve ter no máximo 100 caracteres',
+            'preparation_mode.string' => 'O modo de preparo da receita deve ser tipo texto',
+            'ingredients.string' => 'Os ingredientes utilizados têm de ser tipo texto',
+            'portion.integer' => 'A porção tem de serdo tipo número',
+            'duration.integer' => 'A duração deve ser do tipo número inteiro',
+        ]);
+
+        if ($validator->fails())
+            return $validator->errors()->all();
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image')->store('images');
+            $data['image']=$file;
+        }*/
 
         $recipe->update($data);
 

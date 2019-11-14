@@ -17,7 +17,7 @@ class CreateExercisesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->integer('duration')->unsigned();
             $table->bigInteger('body_part_id')->unsigned();
             $table->bigInteger('exercise_type_id')->unsigned();

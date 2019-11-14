@@ -20,17 +20,20 @@ Route::get('/list_recipe', 'MainController@list_recipe')->name('list_recipe');
 Route::get('/list_type', 'MainController@list_type')->name('list_type');
 Route::get('/list_body', 'MainController@list_body')->name('list_body');
 
-Route::get('/insert_exercise', 'MainController@form_exercise')->name('insert_exercise');
+Route::get('/insert_exercise', 'MainController@form_exercise')->name('insert_exercise_form');
 Route::post('/insert_exercise', 'MainController@insert_exercise')->name('insert_exercise');
 
-Route::get('/insert_recipe', 'MainController@form_recipe')->name('insert_recipe');
+Route::get('/insert_recipe', 'MainController@form_recipe')->name('insert_recipe_form');
 Route::post('/insert_recipe', 'MainController@insert_recipe')->name('insert_recipe');
 
-Route::get('/insert_type', 'MainController@form_type')->name('insert_type');
+Route::get('/insert_type', 'MainController@form_type')->name('insert_type_form');
 Route::post('/insert_type', 'MainController@insert_type')->name('insert_type');
 
-Route::get('/insert_body', 'MainController@form_body')->name('insert_body');
+Route::get('/insert_body', 'MainController@form_body')->name('insert_body_form');
 Route::post('/insert_body', 'MainController@insert_body')->name('insert_body');
+
+Route::get('/edit_exercise/{id}', 'MainController@edit_exercise')->name('edit_exercise');
+Route::put('/update_exercise/{id}/edit', 'MainController@update_exercise')->name('update_exercise');
 /**
  *  Auth & Registration
  */
@@ -45,7 +48,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**
  * Backoffice Routes
  */
-Route::group(['prefix' => 'admin', 'namespace' => 'Backoffice', 'middleware' => ['auth', 'role:admin|manager']],
+Route::group(['prefix' => 'admin', 'namespace' => 'Backoffice', 'middleware' => ['auth', 'role:Admin|Manager']],
     function()
     {
         Route::get('/', 'DashboardController@index')->name('admin');
@@ -53,3 +56,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backoffice', 'middleware' => 
         Route::resource('user', 'UserController');
     }
 );
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

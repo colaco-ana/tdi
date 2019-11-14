@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\TypeStoreRequest;
 
 class TypeController extends Controller
 {
@@ -35,11 +37,13 @@ class TypeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome da secção do tipo de exercício.
+     * @bodyParam image required image Imagem ou icone do tipo de exercício.
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(TypeStoreRequest $request)
     {
         $data = $request->all();
 
@@ -62,7 +66,8 @@ class TypeController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @bodyParam name required string max:100 Nome da secção do tipo de exercício.
+     * @bodyParam image required image Imagem ou icone do tipo de exercício.
      * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
@@ -84,12 +89,13 @@ class TypeController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome da secção do tipo de exercício.
+     * @bodyParam image required image Imagem ou icone do tipo de exercício.
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(TypeStoreRequest $request, Type $type)
     {
         $data = $request->all();
 

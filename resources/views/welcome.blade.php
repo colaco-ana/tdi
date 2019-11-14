@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Fitness & Health</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -85,9 +85,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Exercícios</a>
-                    <a href="https://laracasts.com">Receitas</a>
-                    <a href="https://laravel-news.com">Personal Trainer</a>
+                    <a href="{{url('list_exercise')}}">Exercícios</a>
+                    <a href="{{url('list_recipe')}}">Receitas</a>
                 </div>
             </div>
         </div>

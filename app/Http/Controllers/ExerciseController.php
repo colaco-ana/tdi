@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExerciseStoreRequest;
 use App\Exercise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ExerciseController extends Controller
 {
@@ -12,6 +14,7 @@ class ExerciseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $exercise = Exercise::all();
@@ -36,11 +39,19 @@ class ExerciseController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome do exercício.
+     * @bodyParam description required string max:5000  Execução do exercício.
+     * @bodyParam image required image Imagem do exercício.
+     * @bodyParam duration required integer max:30 Duração do exercício.
+     * @bodyParam body_part_id required integer Parte do corpo que o exercício trabalha.
+     * @bodyParam exercise_type_id required integer Em que tipo de exercício se enquadra.
+     * @bodyParam recipe_id Receita associada a um exercício.
+     * @bodyParam difficulty_id required integer Dificuldade de execução do exercício.
+     * @bodyParam generation_id required integer Geração indicada para o exercício.
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExerciseStoreRequest $request)
     {
         $data = $request->all();
 
@@ -64,7 +75,15 @@ class ExerciseController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @bodyParam name required string max:100 Nome do exercício.
+     * @bodyParam description required string max:5000  Execução do exercício.
+     * @bodyParam image required image Imagem do exercício.
+     * @bodyParam duration required integer max:30 Duração do exercício.
+     * @bodyParam body_part_id required integer Parte do corpo que o exercício trabalha.
+     * @bodyParam exercise_type_id required integer Em que tipo de exercício se enquadra.
+     * @bodyParam recipe_id Receita associada a um exercício.
+     * @bodyParam difficulty_id required integer Dificuldade de execução do exercício.
+     * @bodyParam generation_id required integer Geração indicada para o exercício.
      * @param  \App\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
@@ -86,12 +105,20 @@ class ExerciseController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome do exercício.
+     * @bodyParam description required string max:5000  Execução do exercício.
+     * @bodyParam image required image Imagem do exercício.
+     * @bodyParam duration required integer max:30 Duração do exercício.
+     * @bodyParam body_part_id required integer Parte do corpo que o exercício trabalha.
+     * @bodyParam exercise_type_id required integer Em que tipo de exercício se enquadra.
+     * @bodyParam recipe_id Receita associada a um exercício.
+     * @bodyParam difficulty_id required integer Dificuldade de execução do exercício.
+     * @bodyParam generation_id required integer Geração indicada para o exercício.
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exercise $exercise)
+    public function update(ExerciseStoreRequest $request, Exercise $exercise)
     {
         $data = $request->all();
 

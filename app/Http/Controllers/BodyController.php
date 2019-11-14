@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BodyStoreRequest;
 use App\Body;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BodyController extends Controller
 {
@@ -36,11 +38,13 @@ class BodyController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome da parte do corpo.
+     * @bodyParam image required image Imagem da parte do corpo.
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(BodyStoreRequest $request)
     {
         $data = $request->all();
 
@@ -62,7 +66,8 @@ class BodyController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @bodyParam name required string max:100 Nome da parte do corpo.
+     * @bodyParam image required image Imagem da parte do corpo.
      * @param  \App\Body  $body
      * @return \Illuminate\Http\Response
      */
@@ -84,15 +89,17 @@ class BodyController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @bodyParam name required string max:100 Nome da parte do corpo.
+     * @bodyParam image required image Imagem da parte do corpo.
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Body  $body
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Body $body)
+    public function update(BodyStoreRequest $request, Body $body)
     {
 
         $data = $request->all();
+
 
         $body->update($data);
 

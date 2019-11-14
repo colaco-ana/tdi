@@ -15,6 +15,7 @@ class AlterRecipesTable extends Migration
     {
         Schema::table('recipes', function (Blueprint $table){
             $table->foreign('difficulty_id')->references('id')->on('difficulties');
+
         });
     }
 
